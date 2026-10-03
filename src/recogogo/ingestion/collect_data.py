@@ -11,7 +11,7 @@ COLLECTION_TYPE = {
     "album": deezer_api.get_deezer_album_info,
     "artist": deezer_api.get_deezer_artist_info,
     "track": deezer_api.get_deezer_track_info,
-    "playlist": deezer_api.get_deezer_playlist_info
+    "playlist": deezer_api.get_deezer_playlist_info,
 }
 
 def collect_data(collection_type, collection_id):
@@ -23,6 +23,7 @@ def collect_data(collection_type, collection_id):
         return path
 
     collection_info = COLLECTION_TYPE[collection_type](collection_id)
+
     if not collection_info:
         print(f"Failed to retrieve {collection_type} information for ID {collection_id}.")
         return None
@@ -45,16 +46,3 @@ def collect_artist_data(artist_id):
 def collect_track_data(track_id):
     return collect_data("track", track_id)
 
-def collect_chart_playlists():
-    chart_playlists_info = deezer_api.get_deezer_playlist_in_chart_info()
-    if not chart_playlists_info:
-        print("Failed to retrieve chart playlists information.")
-        return None
-
-    playlist_ids = [playlist["id"] for playlist in chart_playlists_info["data"]]
-    for playlist_id in playlist_ids:
-        collect_playlist_data(playlist_id)
-    return playlist_ids
-
-if __name__ == "__main__":
-    collect_chart_playlists()
