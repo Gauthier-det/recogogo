@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Données et artefacts générés (on garde seulement les .gitkeep)
+data/*
+!data/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
