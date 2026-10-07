@@ -57,7 +57,7 @@ def collect_chart_playlists():
     return playlist_ids
 
 if __name__ == "__main__":
-    collect_playlists_from_search("rap")
+    deep_collect_playlists_from_users([2960047984], limit=10000)
 
 
     #compteur = 0
